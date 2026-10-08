@@ -1,6 +1,5 @@
 {
   "name": "glyphpress",
-  "private": true,
   "sideEffects": false,
   "type": "module",
   "overrides": {
@@ -18,7 +17,9 @@
     "check:auth": "node scripts/check-auth-invariant.mjs",
     "test": "node --test 'scripts/**/*.test.mjs' && node --experimental-strip-types --test src/lib/app-data/app-data.test.ts src/lib/auth/gate-identity.test.ts",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build:package": "GLYPHPRESS_PRESET=node-server vite build",
+    "prepublishOnly": "npm run build:package"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
@@ -93,5 +94,23 @@
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.2.0"
+  },
+  "version": "1.0.0",
+  "description": "Turn any image into ASCII art in your browser",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rockstar-mods-site/glyphpress.git"
+  },
+  "bin": {
+    "glyphpress": "bin/glyphpress.mjs"
+  },
+  "files": [
+    "bin",
+    ".output",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
   }
 }
